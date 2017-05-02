@@ -23,6 +23,7 @@ public class DirectionButton {
         canvas.rotate(deg);
         paint.setColor(Color.parseColor("#BDBDBD"));
         drawTriangle(canvas,paint);
+        directionButtonOpaque.draw(canvas,paint);
         canvas.restore();
     }
     public boolean handleTap(float x,float y) {
