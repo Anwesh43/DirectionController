@@ -13,7 +13,16 @@ import android.view.ViewGroup;
 public class DirectionController {
     private DirectionControllerView directionControllerView;
     private Activity activity;
+    private OnDirectionChangeListener onDirectionChangeListener;
     private int w,h;
+    public void setOnDirectionChangeListener(OnDirectionChangeListener onDirectionChangeListener) {
+        if(directionControllerView!=null) {
+            directionControllerView.setOnDirectionChangeListener(onDirectionChangeListener);
+        }
+        else {
+            this.onDirectionChangeListener = onDirectionChangeListener;
+        }
+    }
     public DirectionController(Activity activity) {
         this.activity = activity;
         initDimension();
@@ -34,6 +43,9 @@ public class DirectionController {
             int size = Math.min(w,h)/2;
             activity.addContentView(directionControllerView,new ViewGroup.LayoutParams(size,size));
             directionControllerView.initXY(w-size,17*h/20-size);
+            if(onDirectionChangeListener != null) {
+                directionControllerView.setOnDirectionChangeListener(onDirectionChangeListener);
+            }
         }
     }
 }

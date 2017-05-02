@@ -15,8 +15,12 @@ import java.util.List;
 public class DirectionControllerView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int render = 0;
+    private OnDirectionChangeListener onDirectionChangeListener;
     private AnimationHandler animationHandler = new AnimationHandler();
     private List<DirectionButton> directionButtons = new ArrayList<>();
+    public void setOnDirectionChangeListener(OnDirectionChangeListener onDirectionChangeListener) {
+        this.onDirectionChangeListener = onDirectionChangeListener;
+    }
     public DirectionControllerView(Context context) {
         super(context);
         initDirectionButtons();
@@ -61,6 +65,11 @@ public class DirectionControllerView extends View {
                 currButton.update();
                 if(currButton.stopped()) {
                     isAnimated = false;
+                    float deg = currButton.getDeg();
+                    float dx = (float)(Math.cos(deg*Math.PI/180)),dy = (float)(Math.sin(deg*Math.PI/180));
+                    if(onDirectionChangeListener != null) {
+                        onDirectionChangeListener.onDirectionChange(dx,dy);
+                    }
                     currButton = null;
                 }
                 try {
