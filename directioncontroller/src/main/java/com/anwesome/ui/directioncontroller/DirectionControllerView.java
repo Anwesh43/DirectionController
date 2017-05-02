@@ -65,7 +65,7 @@ public class DirectionControllerView extends View {
                 currButton.update();
                 if(currButton.stopped()) {
                     isAnimated = false;
-                    float deg = currButton.getDeg();
+                    float deg = currButton.getDeg()-90;
                     float dx = (float)(Math.cos(deg*Math.PI/180)),dy = (float)(Math.sin(deg*Math.PI/180));
                     if(onDirectionChangeListener != null) {
                         onDirectionChangeListener.onDirectionChange(dx,dy);
