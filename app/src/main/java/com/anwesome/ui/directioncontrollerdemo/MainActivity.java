@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
         directionController.setOnDirectionChangeListener(new OnDirectionChangeListener() {
             @Override
             public void onDirectionChange(float dx, float dy) {
-                helloText.setX(helloText.getX()+dx*10);
-                helloText.setY(helloText.getY()+dy*10);
+                helloText.setX(helloText.getX()+dx*50);
+                helloText.setY(helloText.getY()+dy*50);
             }
         });
         directionController.show();
