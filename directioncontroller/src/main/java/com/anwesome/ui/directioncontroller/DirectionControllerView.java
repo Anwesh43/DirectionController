@@ -20,6 +20,10 @@ public class DirectionControllerView extends View {
         super(context);
         initDirectionButtons();
     }
+    public void initXY(float x,float y){
+        setX(x);
+        setY(y);
+    }
     public void initDirectionButtons() {
         for(int i=0;i<4;i++) {
             directionButtons.add(new DirectionButton(90*i));
