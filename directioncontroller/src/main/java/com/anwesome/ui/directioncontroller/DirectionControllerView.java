@@ -64,7 +64,7 @@ public class DirectionControllerView extends View {
                     currButton = null;
                 }
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(30);
                     invalidate();
                 }
                 catch (Exception ex) {
@@ -77,9 +77,12 @@ public class DirectionControllerView extends View {
                 for(DirectionButton directionButton:directionButtons) {
                     if(directionButton.handleTap(x,y)) {
                         currButton = directionButton;
-                        isAnimated = true;
-                        postInvalidate();
+                        break;
                     }
+                }
+                if(currButton != null) {
+                    isAnimated = true;
+                    postInvalidate();
                 }
             }
         }

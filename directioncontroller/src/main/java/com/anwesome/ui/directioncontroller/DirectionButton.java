@@ -34,7 +34,7 @@ public class DirectionButton {
     }
     public boolean handleTap(float x,float y) {
         boolean condition =  x>=this.x -size && x<=this.x+size && y>=this.y-size && y<=this.y+size;
-        if(directionButtonOpaque != null) {
+        if(directionButtonOpaque != null && condition) {
             directionButtonOpaque.startUpdating();
         }
         return condition;
@@ -56,7 +56,7 @@ public class DirectionButton {
     private class DirectionButtonOpaque {
         private float dir = 0,scale = 0;
         public void draw(Canvas canvas,Paint paint) {
-            paint.setColor(Color.parseColor("#99BDBDBD"));
+            paint.setColor(Color.parseColor("#77E0E0E0"));
             canvas.save();
             canvas.scale(scale,scale);
             drawTriangle(canvas,paint);
@@ -67,10 +67,11 @@ public class DirectionButton {
         }
         public void update() {
             scale += dir * 0.2f;
-            if(scale>=1) {
+            if(scale>1) {
                 dir = -1;
+                scale = 1;
             }
-            if(scale<=0) {
+            if(scale<0) {
                 dir = 0;
                 scale = 0;
             }
