@@ -73,7 +73,7 @@ public class DirectionControllerView extends View {
                     currButton = null;
                 }
                 try {
-                    Thread.sleep(30);
+                    Thread.sleep(10);
                     invalidate();
                 }
                 catch (Exception ex) {
