@@ -33,6 +33,12 @@ public class DirectionButton {
         }
         return condition;
     }
+    public float getDeg() {
+        return deg;
+    }
+    public int hashCode() {
+        return (int)(deg+x+y);
+    }
     private void drawTriangle(Canvas canvas,Paint paint) {
         Path path = new Path();
         path.lineTo(-size/2,size/2);
