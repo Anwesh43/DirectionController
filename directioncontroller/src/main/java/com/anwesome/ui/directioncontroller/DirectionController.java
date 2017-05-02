@@ -40,9 +40,9 @@ public class DirectionController {
     public void show() {
         if(directionControllerView == null) {
             directionControllerView = new DirectionControllerView(activity);
-            int size = Math.min(w,h)/2;
+            int size = Math.min(w,h)/3;
             activity.addContentView(directionControllerView,new ViewGroup.LayoutParams(size,size));
-            directionControllerView.initXY(w-size,17*h/20-size);
+            directionControllerView.initXY(19*w/20-size,17*h/20-size);
             if(onDirectionChangeListener != null) {
                 directionControllerView.setOnDirectionChangeListener(onDirectionChangeListener);
             }

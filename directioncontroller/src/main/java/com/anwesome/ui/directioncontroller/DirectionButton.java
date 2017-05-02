@@ -56,7 +56,7 @@ public class DirectionButton {
     private class DirectionButtonOpaque {
         private float dir = 0,scale = 0;
         public void draw(Canvas canvas,Paint paint) {
-            paint.setColor(Color.parseColor("#77E0E0E0"));
+            paint.setColor(Color.parseColor("#7700ACC1"));
             canvas.save();
             canvas.scale(scale,scale);
             drawTriangle(canvas,paint);
