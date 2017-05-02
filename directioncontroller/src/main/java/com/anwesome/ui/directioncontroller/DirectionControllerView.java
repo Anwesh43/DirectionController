@@ -14,6 +14,7 @@ import java.util.List;
 public class DirectionControllerView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int render = 0;
+    private AnimationHandler animationHandler = new AnimationHandler();
     private List<DirectionButton> directionButtons = new ArrayList<>();
     public DirectionControllerView(Context context) {
         super(context);
@@ -37,16 +38,44 @@ public class DirectionControllerView extends View {
             directionButton.draw(canvas,paint);
         }
         render++;
+        animationHandler.animate();
     }
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX(),y = event.getY();
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            for(DirectionButton directionButton:directionButtons) {
-                if(directionButton.handleTap(x,y)) {
+            animationHandler.handleTap(x,y);
+        }
+        return true;
+    }
+    private class AnimationHandler {
+        private DirectionButton currButton;
+        private boolean isAnimated = false;
+        public void animate() {
+            if(isAnimated && currButton != null) {
+                currButton.update();
+                if(currButton.stopped()) {
+                    isAnimated = false;
+                    currButton = null;
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
 
                 }
             }
         }
-        return true;
+        public void  handleTap(float x,float y) {
+            if(!isAnimated && currButton == null) {
+                for(DirectionButton directionButton:directionButtons) {
+                    if(directionButton.handleTap(x,y)) {
+                        currButton = directionButton;
+                        isAnimated = true;
+                        postInvalidate();
+                    }
+                }
+            }
+        }
     }
 }

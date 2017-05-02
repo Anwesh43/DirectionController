@@ -17,6 +17,12 @@ public class DirectionButton {
         this.size = size;
         directionButtonOpaque = new DirectionButtonOpaque();
     }
+    public void update() {
+        directionButtonOpaque.update();
+    }
+    public boolean stopped() {
+        return directionButtonOpaque.stopped();
+    }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
         canvas.translate(x+size/2,y+size/2);
@@ -55,6 +61,9 @@ public class DirectionButton {
             canvas.scale(scale,scale);
             drawTriangle(canvas,paint);
             canvas.restore();
+        }
+        public boolean stopped() {
+            return dir == 0;
         }
         public void update() {
             scale += dir * 0.2f;
