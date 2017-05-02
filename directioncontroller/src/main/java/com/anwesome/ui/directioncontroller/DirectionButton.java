@@ -28,4 +28,29 @@ public class DirectionButton {
         canvas.drawPath(path,paint);
         canvas.restore();
     }
+    private class DirectionButtonOpaque {
+        private float dir = 0,scale = 0;
+        public void draw(Canvas canvas,Paint paint) {
+            paint.setColor(Color.parseColor("#99BDBDBD"));
+            canvas.save();
+            canvas.translate(0,size/2);
+            canvas.scale(scale,scale);
+            Path path = new Path();
+            path.lineTo(-size/2,size/2);
+            path.lineTo(0,-size/2);
+            path.lineTo(size/2,size/2);
+            canvas.drawPath(path,paint);
+            canvas.restore();
+        }
+        public void update() {
+            scale += dir * 0.2f;
+            if(scale>=1) {
+                dir = -1;
+            }
+            if(scale<=0) {
+                dir = 0;
+                scale = 0;
+            }
+        }
+    }
 }
