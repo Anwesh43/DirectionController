@@ -31,7 +31,7 @@ public class DirectionController {
     public void show() {
         if(directionControllerView == null) {
             directionControllerView = new DirectionControllerView(activity);
-            int size = Math.min(w,h)/4;
+            int size = Math.min(w,h)/2;
             activity.addContentView(directionControllerView,new ViewGroup.LayoutParams(size,size));
             directionControllerView.initXY(w-size,17*h/20-size);
         }

@@ -25,7 +25,7 @@ public class DirectionButton {
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
-        canvas.translate(x+size/2,y+size/2);
+        canvas.translate(x,y);
         canvas.rotate(deg);
         paint.setColor(Color.parseColor("#BDBDBD"));
         drawTriangle(canvas,paint);
@@ -47,9 +47,10 @@ public class DirectionButton {
     }
     private void drawTriangle(Canvas canvas,Paint paint) {
         Path path = new Path();
-        path.lineTo(-size/2,size/2);
+        path.moveTo(-size/2,size/2);
         path.lineTo(0,-size/2);
         path.lineTo(size/2,size/2);
+        path.lineTo(-size/2,size/2);
         canvas.drawPath(path,paint);
     }
     private class DirectionButtonOpaque {
@@ -57,7 +58,6 @@ public class DirectionButton {
         public void draw(Canvas canvas,Paint paint) {
             paint.setColor(Color.parseColor("#99BDBDBD"));
             canvas.save();
-            canvas.translate(0,size/2);
             canvas.scale(scale,scale);
             drawTriangle(canvas,paint);
             canvas.restore();

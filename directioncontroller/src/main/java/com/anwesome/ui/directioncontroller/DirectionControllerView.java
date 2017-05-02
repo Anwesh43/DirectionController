@@ -2,6 +2,7 @@ package com.anwesome.ui.directioncontroller;
 
 import android.content.Context;
 import android.graphics.*;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -34,7 +35,8 @@ public class DirectionControllerView extends View {
         if(render == 0) {
             float x = w/2,y = w/2,size = w/4;
             for(DirectionButton directionButton:directionButtons ){
-                float deg = directionButton.getDeg(),fx = (float)(Math.cos(deg-90)*Math.PI/180),fy = (float)(Math.sin(deg-90)*Math.PI/180);
+                float deg = directionButton.getDeg(),fx = (float)(Math.cos((deg-90)*Math.PI/180)),fy = (float)(Math.sin((deg-90)*Math.PI/180));
+                Log.d("x,y",String.format("%f,%f",fx,fy));
                 directionButton.setDimension(x+fx*3*size/2,y+fy*3*size/2,size);
             }
         }
